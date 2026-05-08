@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI-powered Resume Analyzer — upload your resume and get instant ATS scores, improvement tips, and professional feedback powered by Claude AI." />
+  <title>ResumeIQ — AI Resume Analyzer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>" />
+</head>
+<body>
+  <!-- ══════════ Ambient Background ══════════ -->
+  <div class="ambient-bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- ══════════ Navbar ══════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </div>
+        <span class="brand-text">Resume<span class="brand-accent">IQ</span></span>
+      </div>
+      <div class="nav-links">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="https://github.com/Dakshjain2006/resume-analyzer" target="_blank" class="nav-link nav-link-github">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ══════════ Hero Section ══════════ -->
+  <header class="hero" id="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        AI-Powered Resume Analysis
+      </div>
+      <h1 class="hero-title">
+        Land your dream job<br />
+        <span class="gradient-text">with a better resume.</span>
+      </h1>
+      <p class="hero-subtitle">
+        Upload your resume and get instant AI-powered feedback — ATS compatibility scores, improvement suggestions, and professional review.
+      </p>
+    </div>
+  </header>
+
+  <!-- ══════════ Main App ══════════ -->
+  <main class="app-container" id="app">
+    <div class="app-grid">
+      <!-- ─── Left Panel: Input ─── -->
+      <section class="panel panel-input" id="panel-input">
+        <div class="panel-header">
+          <div class="panel-title-row">
+            <div class="panel-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <h2 class="panel-title">Resume Input</h2>
+          </div>
+          <div class="panel-controls">
+            <span class="char-counter" id="char-counter">0 chars</span>
+          </div>
+        </div>
+
+        <!-- Upload Area -->
+        <div class="upload-zone" id="upload-zone">
+          <div class="upload-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+          </div>
+          <p class="upload-title">Drag & drop your resume here</p>
+          <p class="upload-sub">or click to browse — supports <strong>.pdf</strong>, <strong>.txt</strong></p>
+          <input type="file" id="file-input" accept=".pdf,.txt,.doc,.docx" hidden />
+          <div class="upload-file-info" id="file-info" style="display:none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span id="file-name"></span>
+            <button class="file-remove" id="file-remove" title="Remove file">✕</button>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="divider-row">
+          <div class="divider-line"></div>
+          <span class="divider-text">or paste text</span>
+          <div class="divider-line"></div>
+        </div>
+
+        <!-- Text Input -->
+        <div class="text-input-wrap">
+          <textarea
+            id="resume-input"
+            class="resume-editor"
+            spellcheck="false"
+            placeholder="Paste your resume text here...
+
+Example:
+John Doe
+Software Engineer | john@email.com
+
+EXPERIENCE
+Senior Developer at TechCorp (2021-Present)
+• Led a team of 5 engineers to build microservices
+• Reduced API response time by 40%
+
+EDUCATION
+B.S. Computer Science — MIT, 2020
+
+SKILLS
+Python, JavaScript, React, Node.js, AWS, Docker"
+            aria-label="Resume text input"
+          ></textarea>
+        </div>
+
+        <!-- Optional Job Description -->
+        <div class="jd-section">
+          <button class="jd-toggle" id="jd-toggle" onclick="toggleJD()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Job Description (optional)
+          </button>
+          <div class="jd-input-wrap" id="jd-wrap" style="display:none;">
+            <textarea
+              id="jd-input"
+              class="jd-editor"
+              spellcheck="false"
+              placeholder="Paste the job description here for tailored analysis..."
+              aria-label="Job description input"
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Mode Selector & Analyze -->
+        <div class="action-bar">
+          <div class="mode-group">
+            <button class="mode-btn active" id="mode-review" onclick="setMode('review')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              Review
+            </button>
+            <button class="mode-btn" id="mode-ats" onclick="setMode('ats')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+              ATS Scan
+            </button>
+            <button class="mode-btn" id="mode-improve" onclick="setMode('improve')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Improve
+            </button>
+          </div>
+          <button class="analyze-btn" id="analyze-btn" onclick="analyzeResume()">
+            <span class="analyze-btn-text">Analyze Resume</span>
+            <svg class="analyze-btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- ─── Right Panel: Output ─── -->
+      <section class="panel panel-output" id="panel-output">
+        <div class="panel-header">
+          <div class="panel-title-row">
+            <div class="panel-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <h2 class="panel-title">Analysis</h2>
+          </div>
+          <div class="panel-controls">
+            <div class="out-dot" id="out-dot"></div>
+            <span class="out-status" id="out-status">Ready</span>
+          </div>
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="empty-state">
+          <div class="empty-icon">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.35">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+          </div>
+          <p class="empty-title">No analysis yet</p>
+          <p class="empty-sub">Upload your resume or paste text, choose a mode, and hit <strong>Analyze Resume</strong>.</p>
+        </div>
+
+        <!-- Loading State -->
+        <div class="loading-state" id="loading-state">
+          <div class="loader-ring">
+            <div class="ring"></div>
+          </div>
+          <p class="spin-txt" id="spin-txt">Analyzing your resume…</p>
+        </div>
+
+        <!-- Error Banner -->
+        <div class="error-banner" id="error-banner"></div>
+
+        <!-- Results -->
+        <div class="result-area" id="result-area"></div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ══════════ Features Section ══════════ -->
+  <section class="features-section" id="features">
+    <div class="section-inner">
+      <h2 class="section-title">Why <span class="gradient-text">ResumeIQ</span>?</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Smart Scoring</h3>
+          <p>Get a detailed score breakdown across formatting, content, impact, and readability.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🤖</div>
+          <h3>ATS Compatible</h3>
+          <p>Check if your resume passes Applicant Tracking Systems with keyword and format analysis.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Job Matching</h3>
+          <p>Paste a job description to get tailored suggestions that match what recruiters want.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✨</div>
+          <h3>AI Rewriting</h3>
+          <p>Get AI-improved bullet points that showcase your achievements with stronger impact.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ How It Works ══════════ -->
+  <section class="how-section" id="how-it-works">
+    <div class="section-inner">
+      <h2 class="section-title">How It <span class="gradient-text">Works</span></h2>
+      <div class="steps-row">
+        <div class="how-step">
+          <div class="how-num">1</div>
+          <h4>Upload Resume</h4>
+          <p>Drop a PDF or paste your resume text directly into the editor.</p>
+        </div>
+        <div class="how-arrow">→</div>
+        <div class="how-step">
+          <div class="how-num">2</div>
+          <h4>Choose Analysis</h4>
+          <p>Pick Review, ATS Scan, or Improve mode based on your needs.</p>
+        </div>
+        <div class="how-arrow">→</div>
+        <div class="how-step">
+          <div class="how-num">3</div>
+          <h4>Get Feedback</h4>
+          <p>Receive AI-powered scores, suggestions, and rewritten bullet points.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ Footer ══════════ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>Built with ❤️ by <strong>Daksh Jain</strong> &middot; Powered by Claude AI</p>
+      <p class="footer-sub">© 2025 ResumeIQ. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- PDF.js for client-side PDF text extraction -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    if (window.pdfjsLib) {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
