@@ -1,0 +1,21 @@
+{
+  "name": "resumeiq-resume-analyzer",
+  "version": "1.0.0",
+  "description": "AI-powered resume analyzer with review, ATS scan, and improvement modes — powered by Claude API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "keywords": ["resume", "analyzer", "ats", "ai", "claude", "career"],
+  "author": "Daksh Jain",
+  "license": "MIT"
+}
